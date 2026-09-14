@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Hub
 
-## Getting Started
+作ったものと、その途中で得た学びをひとつにつなぐポートフォリオです。選択式の自己紹介、プロジェクト検索、MDXによる制作・学習ログを備えています。
 
-First, run the development server:
+## 開発
+
+Node.js 22.13以降を推奨します。
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開きます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 内容の差し替え
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 名前・紹介・外部リンク: `src/data/profile.ts`
+- 自己紹介の質問フロー: `src/data/intro-flow.ts`
+- プロジェクト: `content/projects/*.mdx`
+- 学習・制作ログ: `content/logs/*.mdx`
 
-## Learn More
+各MDXのfrontmatterはZodで検証されます。ファイル名はURLのslugになるため、英小文字のkebab-caseで作成してください。
 
-To learn more about Next.js, take a look at the following resources:
+## 品質チェック
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run test:coverage
+npm run test:e2e
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+E2Eを初めて実行するときは、先に `npx playwright install chromium` を実行してください。
 
-## Deploy on Vercel
+## データ構成
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+画面は `PortfolioRepository` インターフェースを通してコンテンツを読みます。現在はローカルMDX実装ですが、将来はUIを変更せずSupabase実装へ差し替えられます。MVPではSupabase環境変数は不要です。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 公開
+
+Vercelへそのままデプロイできます。公開前に `src/data/profile.ts` の仮メールアドレスとGitHub URLを実際の情報へ変更してください。
