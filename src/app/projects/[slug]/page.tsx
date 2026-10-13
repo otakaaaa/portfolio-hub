@@ -46,7 +46,11 @@ export default async function ProjectDetailPage(
               <li key={technology}>{technology}</li>
             ))}
         </ul>
-        <ProjectLinks repositoryUrl={project.repositoryUrl} demoUrl={project.demoUrl} />
+        <ProjectLinks
+          repositoryUrl={project.repositoryUrl}
+          demoUrl={project.demoUrl}
+          previewHref={project.previewKey ? `/projects/${project.slug}/preview` : undefined}
+        />
       </aside>
 
       <div className="article-body">

@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
+import { listPreviewOrigins } from "./src/features/projects/preview-registry";
 
 const scriptPolicy =
   process.env.NODE_ENV === "development"
     ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
     : "script-src 'self' 'unsafe-inline'";
+const previewOrigins = listPreviewOrigins();
+const frameSourcePolicy = previewOrigins.length
+  ? `frame-src ${previewOrigins.join(" ")}`
+  : "frame-src 'none'";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -12,6 +17,7 @@ const contentSecurityPolicy = [
   "img-src 'self' data:",
   "font-src 'self'",
   "connect-src 'self'",
+  frameSourcePolicy,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

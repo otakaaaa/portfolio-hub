@@ -24,4 +24,21 @@ describe("ProjectLinks", () => {
     expect(screen.getByRole("link", { name: "ソースを見る" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "デモを見る" })).not.toBeInTheDocument();
   });
+
+  it("renders the internal interactive preview separately from external links", () => {
+    render(
+      <ProjectLinks
+        previewHref="/projects/finde/preview"
+        repositoryUrl="https://github.com/otakaaaa/finde"
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: "操作プレビュー" })).toHaveAttribute(
+      "href",
+      "/projects/finde/preview",
+    );
+    expect(screen.getByRole("link", { name: "操作プレビュー" })).not.toHaveAttribute(
+      "target",
+    );
+  });
 });

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
+import { introFlow } from "@/data/intro-flow";
 import { InteractiveIntro } from "./interactive-intro";
 
 describe("InteractiveIntro", () => {
@@ -8,10 +9,15 @@ describe("InteractiveIntro", () => {
     const user = userEvent.setup();
     render(<InteractiveIntro />);
 
-    await user.click(screen.getByRole("button", { name: "何を作る人？" }));
-    expect(screen.getByText(/課題を観察して/)).toBeInTheDocument();
+    const firstChoice = introFlow.nodes[introFlow.startNodeId].choices[0];
+    const answer = introFlow.nodes[firstChoice.nextNodeId];
+
+    await user.click(screen.getByRole("button", { name: firstChoice.label }));
+    expect(screen.getByText(answer.message)).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "最初から見る" }));
-    expect(screen.getByText("どこから話しましょう？")).toBeInTheDocument();
+    expect(
+      screen.getByText(introFlow.nodes[introFlow.startNodeId].message),
+    ).toBeInTheDocument();
   });
 });

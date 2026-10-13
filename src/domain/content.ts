@@ -4,6 +4,13 @@ const nonEmptyText = z.string().trim().min(1);
 const stringList = z.array(nonEmptyText).min(1);
 const webUrl = z.url({ protocol: /^https?$/ });
 
+export const previewKeySchema = z.enum([
+  "finde",
+  "house-review",
+  "invoice-generator",
+  "code-garden",
+]);
+
 export const contentSlugSchema = z
   .string()
   .max(100)
@@ -19,6 +26,7 @@ export const projectFrontmatterSchema = z.object({
   tech: stringList,
   repositoryUrl: webUrl.optional(),
   demoUrl: webUrl.optional(),
+  previewKey: previewKeySchema.optional(),
 });
 
 export const logFrontmatterSchema = z.object({
@@ -30,6 +38,7 @@ export const logFrontmatterSchema = z.object({
 });
 
 export type ProjectStatus = z.infer<typeof projectFrontmatterSchema>["status"];
+export type PreviewKey = z.infer<typeof previewKeySchema>;
 
 export type ProjectSummary = Readonly<{
   slug: string;
@@ -42,6 +51,7 @@ export type ProjectSummary = Readonly<{
   tech: readonly string[];
   repositoryUrl?: string;
   demoUrl?: string;
+  previewKey?: PreviewKey;
 }>;
 
 export type ProjectDocument = Readonly<ProjectSummary & { body: string }>;
