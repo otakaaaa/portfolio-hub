@@ -37,7 +37,7 @@ export default async function ProjectDetailPage(
     <article className="article-shell">
       <aside className="article-meta">
         <Link className="secondary-link" href="/projects">
-          ← Projectsへ戻る
+          ← プロジェクトへ戻る
         </Link>
         <p>{getProjectStatusLabel(project.status)}</p>
         <time dateTime={project.publishedAt}>{project.publishedAt}</time>
@@ -49,7 +49,6 @@ export default async function ProjectDetailPage(
         <ProjectLinks
           repositoryUrl={project.repositoryUrl}
           demoUrl={project.demoUrl}
-          previewHref={project.previewKey ? `/projects/${project.slug}/preview` : undefined}
         />
       </aside>
 

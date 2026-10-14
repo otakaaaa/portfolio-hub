@@ -34,8 +34,8 @@ export default async function LogDetailPage(props: {
   return (
     <article className="article-shell">
       <aside className="article-meta">
-        <Link className="secondary-link" href="/logs">
-          ← Logsへ戻る
+        <Link className="secondary-link" href="/notes">
+          ← ノートへ戻る
         </Link>
         <time dateTime={log.publishedAt}>{log.publishedAt}</time>
         <ul className="inline-tags" aria-label="タグ">

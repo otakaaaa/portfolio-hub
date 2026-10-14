@@ -18,8 +18,8 @@ export function InteractiveIntro() {
     <section className="intro-panel" aria-labelledby="intro-title">
       <div className="intro-heading">
         <div>
-          <p className="section-kicker">Interactive introduction</p>
-          <h2 id="intro-title">質問から知る</h2>
+          <p className="section-kicker"></p>
+          <h2 id="intro-title">質問から私を知ってみませんか？</h2>
         </div>
         {state.history.length > 1 ? (
           <button className="text-button" type="button" onClick={restart}>

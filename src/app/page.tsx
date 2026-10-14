@@ -14,8 +14,6 @@ export default async function Home() {
     <>
       <section className="hero">
         <div className="hero-index" aria-hidden="true">
-          <span>PORTFOLIO / 2026</span>
-          <span>35.6762° N</span>
         </div>
         <div className="hero-copy">
           <p className="role">{profile.role}</p>
@@ -23,7 +21,7 @@ export default async function Home() {
           <p className="hero-lead">{profile.introduction}</p>
           <div className="hero-actions">
             <Link className="primary-link" href="/projects">制作物を見る</Link>
-            <Link className="secondary-link" href="/logs">学びを読む</Link>
+            <Link className="secondary-link" href="/notes">学びを読む</Link>
           </div>
         </div>
         <aside className="hero-note">
@@ -37,7 +35,7 @@ export default async function Home() {
       <section className="home-section" aria-labelledby="projects-heading">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">Selected projects</p>
+            <p className="section-kicker"></p>
             <h2 id="projects-heading">作ったもの</h2>
           </div>
           <Link href="/projects">すべて見る</Link>
@@ -48,14 +46,14 @@ export default async function Home() {
       <section className="home-section logs-section" aria-labelledby="logs-heading">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">Learning notes</p>
-            <h2 id="logs-heading">途中の記録</h2>
+            <p className="section-kicker"></p>
+            <h2 id="logs-heading">ノート</h2>
           </div>
-          <Link href="/logs">ログ一覧</Link>
+          <Link href="/notes">すべて見る</Link>
         </div>
         <div className="log-list">
           {logs.slice(0, 3).map((log) => (
-            <Link className="log-row" href={`/logs/${log.slug}`} key={log.slug}>
+            <Link className="log-row" href={`/notes/${log.slug}`} key={log.slug}>
               <time dateTime={log.publishedAt}>{log.publishedAt}</time>
               <strong>{log.title}</strong>
               <span>{log.tags.join(" / ")}</span>

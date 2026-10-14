@@ -12,23 +12,6 @@ describe("local content repository", () => {
     expect(projects[0]).not.toHaveProperty("body");
   });
 
-  it("loads every interactive portfolio project with its preview key", async () => {
-    const projects = await portfolioRepository.listProjects();
-    const previews = new Map(
-      projects
-        .filter((project) => project.previewKey)
-        .map((project) => [project.slug, project.previewKey]),
-    );
-
-    expect(previews).toEqual(
-      new Map([
-        ["finde", "finde"],
-        ["house-review", "house-review"],
-        ["invoice-generator", "invoice-generator"],
-        ["code-garden", "code-garden"],
-      ]),
-    );
-  });
 
   it("loads a project by slug and returns undefined for an unknown slug", async () => {
     const project = await portfolioRepository.getProject("portfolio-hub");

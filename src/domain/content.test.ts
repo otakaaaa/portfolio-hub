@@ -51,18 +51,6 @@ describe("content frontmatter schemas", () => {
       }).demoUrl,
     ).toBe("https://example.com/demo");
 
-    expect(
-      projectFrontmatterSchema.parse({
-        ...baseProject,
-        previewKey: "finde",
-      }).previewKey,
-    ).toBe("finde");
-    expect(() =>
-      projectFrontmatterSchema.parse({
-        ...baseProject,
-        previewKey: "unknown-project",
-      }),
-    ).toThrow();
   });
 
   it("limits slugs to a filesystem-safe length", () => {

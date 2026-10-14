@@ -18,7 +18,6 @@ export default defineConfig({
         "src/domain/**/*.ts",
         "src/features/**/*.ts",
         "src/components/intro/interactive-intro.tsx",
-        "src/components/layout/theme-toggle.tsx",
         "src/components/projects/project-explorer.tsx",
         "src/components/projects/project-links.tsx",
       ],

@@ -14,7 +14,6 @@ const projects: ProjectSummary[] = [
     status: "building",
     featured: true,
     tech: ["TypeScript"],
-    previewKey: "finde",
   },
   {
     slug: "rubblenomics",
@@ -75,13 +74,4 @@ describe("ProjectExplorer", () => {
     expect(screen.queryByRole("searchbox")).not.toBeInTheDocument();
   });
 
-  it("marks projects that include an interactive preview", () => {
-    render(<ProjectExplorer projects={projects} />);
-
-    expect(screen.getByText("操作デモあり")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Portfolio Hubの操作プレビューを見る" })).toHaveAttribute(
-      "href",
-      "/projects/portfolio-hub/preview",
-    );
-  });
 });

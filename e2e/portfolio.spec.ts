@@ -3,8 +3,8 @@ import { expect, test } from "@playwright/test";
 test("自己紹介をたどり、最初からやり直せる", async ({ page }) => {
   const response = await page.goto("/");
   expect(response?.headers()["content-security-policy"]).toContain("frame-ancestors 'none'");
-  await expect(page.getByRole("link", { name: "GitHub" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Contact" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "メインナビゲーション" }).getByRole("link", { name: "プロジェクト" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "メインナビゲーション" }).getByRole("link", { name: "ノート" })).toBeVisible();
   await page.getByRole("button", { name: "何を作る人？" }).click();
   await expect(page.getByText(/課題を観察して/)).toBeVisible();
   await page.getByRole("button", { name: "最初から見る" }).click();
@@ -13,6 +13,8 @@ test("自己紹介をたどり、最初からやり直せる", async ({ page }) 
 
 test("プロジェクトを検索して詳細へ移動できる", async ({ page }) => {
   await page.goto("/projects");
+  await expect(page.getByRole("heading", { level: 1, name: "プロジェクト" })).toBeVisible();
+  await expect(page.getByRole("navigation").getByRole("link", { name: "プロジェクト" })).toHaveAttribute("aria-current", "page");
   await page.getByRole("searchbox").fill("Godot");
   await expect(page.getByRole("link", { name: /Rubblenomics/ })).toBeVisible();
   await page.getByRole("link", { name: /Rubblenomics/ }).click();
@@ -20,8 +22,10 @@ test("プロジェクトを検索して詳細へ移動できる", async ({ page 
 });
 
 test("学習ログを開ける", async ({ page }) => {
-  await page.goto("/logs");
-  const firstLog = page.locator("main a[href^='/logs/']").first();
+  await page.goto("/notes");
+  await expect(page.getByRole("heading", { level: 1, name: "ノート" })).toBeVisible();
+  await expect(page.getByRole("navigation").getByRole("link", { name: "ノート" })).toHaveAttribute("aria-current", "page");
+  const firstLog = page.locator("main a[href^='/notes/']").first();
   await expect(firstLog).toBeVisible();
   await firstLog.click();
   await expect(page.locator("article h1")).toBeVisible();

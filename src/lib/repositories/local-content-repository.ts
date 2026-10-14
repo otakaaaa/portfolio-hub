@@ -62,7 +62,6 @@ function toProjectSummary(document: ProjectDocument): ProjectSummary {
       ? { repositoryUrl: document.repositoryUrl }
       : {}),
     ...(document.demoUrl ? { demoUrl: document.demoUrl } : {}),
-    ...(document.previewKey ? { previewKey: document.previewKey } : {}),
   };
 }
 

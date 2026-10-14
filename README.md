@@ -18,7 +18,7 @@ npm run dev
 - 名前・紹介・外部リンク: `src/data/profile.ts`
 - 自己紹介の質問フロー: `src/data/intro-flow.ts`
 - プロジェクト: `content/projects/*.mdx`
-- 学習・制作ログ: `content/logs/*.mdx`
+- 学習・制作ノート: `content/logs/*.mdx`（公開URLは `/notes`）
 
 各MDXのfrontmatterはZodで検証されます。ファイル名はURLのslugになるため、英小文字のkebab-caseで作成してください。
 

@@ -76,20 +76,11 @@ export function ProjectExplorer({ projects, compact = false }: ProjectExplorerPr
               <div>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
-                {project.previewKey ? <span className="preview-badge">操作デモあり</span> : null}
                 <ul className="inline-tags" aria-label="使用技術">
                   {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
                 </ul>
               </div>
               <div className="project-row-actions">
-                {project.previewKey ? (
-                  <Link
-                    href={`/projects/${project.slug}/preview`}
-                    aria-label={`${project.title}の操作プレビューを見る`}
-                  >
-                    試してみる
-                  </Link>
-                ) : null}
                 <Link href={`/projects/${project.slug}`} aria-label={`${project.title}の詳細を見る`}>
                   詳細を見る
                 </Link>
